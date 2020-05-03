@@ -1,1 +1,1 @@
-web: gunicorn test_api.app_mongo:app
+web: gunicorn app_mongo:app
