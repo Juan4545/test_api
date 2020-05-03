@@ -6,6 +6,7 @@ import requests
 import os
 import datetime
 from datetime import date
+from selenium import webdriver
 
 from splinter import Browser
 from bs4 import BeautifulSoup
