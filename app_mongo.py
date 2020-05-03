@@ -13,14 +13,13 @@ user_collection = pymongo.collection.Collection(db, 'user_collection')
 
 @app.route("/")
 def welcome():
-    """List all available api routes."""
-    return (
-        f"Available Routes:<br/>"
-        f"/api/data_quake<br/>"
-    )
+    quake_scrape = earth_quakes.last_quake()
+    db.db.user_collection.update({}, quake_scrape, upsert=True)
+    # Redirect back to home page
+    return jsonify(quake_scrape)
 
 
-@app.route("/api/data_quake")
+@app.route("/")
 def scrape():
 
     # Run the scrape function
