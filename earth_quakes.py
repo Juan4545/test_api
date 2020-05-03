@@ -57,7 +57,7 @@ def last_quake():
 	chrome_options.add_argument("--no-sandbox")
 	driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 	url = "http://www.ssn.unam.mx/" 
-	driver.visit(url)
+	driver.get(url)
 	html = driver.html
 	soup = BeautifulSoup(html, "html.parser")
 	last_quake_mx = soup.find("div", class_="tab-pane fade in active text-uppercase")
