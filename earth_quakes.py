@@ -12,9 +12,9 @@ from splinter import Browser
 from bs4 import BeautifulSoup
 import pandas as pd
 
-def iiniciar_browser(): 
-    exec_path = {'executable_path': 'chromedriver'}
-    return Browser('chrome', headless=True, **exec_path)
+#def iiniciar_browser(): 
+#    exec_path = {'executable_path': 'chromedriver'}
+#    return Browser('chrome', headless=True, **exec_path)
 
 
 mag=[]
@@ -50,9 +50,14 @@ dic={"Place": place,
 
 
 def last_quake():
-	browser = iiniciar_browser()
+	chrome_options = webdriver.ChromeOptions()
+	chrome_options.binary_location= os.environ.get("GOOGLE_CHROME_BIN")
+	chrome_options.add_argument("--headless")
+	chrome_options.add_argument("--disable-dev-shm-usage")
+	chrome_options.add_argument("--no-sandbox")
+	driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 	url = "http://www.ssn.unam.mx/" 
-	browser.visit(url)
+	driver.visit(url)
 	html = browser.html
 	soup = BeautifulSoup(html, "html.parser")
 	last_quake_mx = soup.find("div", class_="tab-pane fade in active text-uppercase")
