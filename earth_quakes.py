@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 def iiniciar_browser(): 
-    exec_path = {'executable_path': '/app/chromedriver'}
+    exec_path = {'executable_path': 'chromedriver'}
     return Browser('chrome', headless=True, **exec_path)
 
 
