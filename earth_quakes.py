@@ -58,7 +58,7 @@ def last_quake():
 	driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 	url = "http://www.ssn.unam.mx/" 
 	driver.get(url)
-	html = driver.html
+	html = driver.page_source
 	soup = BeautifulSoup(html, "html.parser")
 	last_quake_mx = soup.find("div", class_="tab-pane fade in active text-uppercase")
 	last_queake_text=last_quake_mx.text
@@ -69,5 +69,6 @@ def last_quake():
 	del last_queake_list[6]
 	del last_queake_list[6]
 	dic['last_quake']=last_queake_list
+	driver.quit()
 	return dic
 
